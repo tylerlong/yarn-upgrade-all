@@ -1,12 +1,15 @@
 {
   "name": "yarn-upgrade-all",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "This is a command line utility program to upgrade all the packages in your package.json to the latest version (potentially upgrading packages across major versions).",
-  "main": "index.js",
+  "bin": "index.js",
   "repository": "git@github.com:tylerlong/yarn-upgrade-all.git",
   "author": "Tyler Long <tyler4long@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "standard": "^10.0.2"
+  },
+  "dependencies": {
+    "chalk": "^1.1.3"
   }
 }
