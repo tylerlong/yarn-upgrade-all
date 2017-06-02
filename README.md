@@ -7,7 +7,7 @@ This is a command line utility program to upgrade all the packages in your `pack
 ## Installation
 
 ```
-yarn add --global yarn-upgrade-all
+yarn global add yarn-upgrade-all
 ```
 
 
