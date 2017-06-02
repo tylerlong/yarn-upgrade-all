@@ -4,12 +4,27 @@ This is a command line utility program to upgrade all the packages in your `pack
 (potentially upgrading packages across major versions).
 
 
+## Installation
+
+```
+yarn add --global yarn-upgrade-all
+```
+
+
+## Usage
+
+```
+cd <your-node-js-project>
+yarn-upgrade-all
+```
+
+
 ## How does it work?
 
 For every package in `package.json`, run `yarn upgrade <package-name>`.
 
 
-## Why not `yarn upgrade` ?
+## Why not simply `yarn upgrade` ?
 
 According to [the doc](https://yarnpkg.com/lang/en/docs/cli/upgrade/), `yarn upgrade` respects version ranges specified in the `package.json` file. Use it if it's the expected behavior.
 
