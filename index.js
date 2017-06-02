@@ -22,13 +22,8 @@ for (let element of ['dependencies', 'devDependencies', 'peerDependencies']) {
   if (packageJson[element]) {
     const packages = Object.keys(packageJson[element])
     for (let pkg of packages) {
-      childProcess.exec(`yarn upgrade ${pkg}`, { stdio: [] }, (error, stdout, stderr) => {
-        if (error) {
-          logError(`yarn upgrade ${pkg}: ${error}`)
-        } else {
-          logDone(`yarn upgrade ${pkg}`)
-        }
-      })
+      childProcess.execSync(`yarn upgrade ${pkg}`, { stdio: [] })
+      logDone(`yarn upgrade ${pkg}`)
     }
   }
 }
