@@ -10,6 +10,22 @@ This is a command line utility program to upgrade all the packages in your `pack
 yarn global add yarn-upgrade-all
 ```
 
+#### Installation locally
+
+```
+yarn add yarn-upgrade-all
+```
+
+Usage: `./node_modules/.bin/yarn-upgrade-all`
+
+#### Installation on Windows
+
+```
+npm install -g yarn-upgrade-all
+```
+
+Don't use `yarn` to install it on Windows because there is a bug: [yarnpkg/yarn#2224](https://github.com/yarnpkg/yarn/issues/2224).
+
 
 ## Usage
 
