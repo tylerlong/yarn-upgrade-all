@@ -24,7 +24,7 @@ Usage: `./node_modules/.bin/yarn-upgrade-all`
 npm install -g yarn-upgrade-all
 ```
 
-Don't use `yarn` to install it on Windows because there is a bug: [yarnpkg/yarn#2224](https://github.com/yarnpkg/yarn/issues/2224).
+:exclamation: Don't use `yarn` to install it on Windows because there is a bug: [yarnpkg/yarn#2224](https://github.com/yarnpkg/yarn/issues/2224).
 
 
 ## Usage
