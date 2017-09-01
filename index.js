@@ -26,7 +26,7 @@ for (let element of ['dependencies', 'devDependencies', 'peerDependencies']) {
         childProcess.execSync(`yarn upgrade ${pkg}`, { stdio: [] })
         logDone(`yarn upgrade ${pkg}`)
       } catch (e) {
-        logError(e)
+        logError(`yarn upgrade ${pkg} - ${e}`)
       }
     }
   }
