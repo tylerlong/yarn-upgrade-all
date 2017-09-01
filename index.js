@@ -22,8 +22,13 @@ for (let element of ['dependencies', 'devDependencies', 'peerDependencies']) {
   if (packageJson[element]) {
     const packages = Object.keys(packageJson[element])
     for (let pkg of packages) {
-      childProcess.execSync(`yarn upgrade ${pkg}`, { stdio: [] })
-      logDone(`yarn upgrade ${pkg}`)
+      const spawn = childProcess.spawnSync(`yarn upgrade ${pkg}`, { stdio: [] })
+      const errorText = spawn.stderr.toString().trim()
+      if (errorText) {
+        logError(errorText)
+      } else {
+        logDone(`yarn upgrade ${pkg}`)
+      }
     }
   }
 }
