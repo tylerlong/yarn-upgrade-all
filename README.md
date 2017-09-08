@@ -4,6 +4,11 @@ This is a command line utility program to upgrade all the packages in your `pack
 (potentially upgrading packages across major versions).
 
 
+## :exclamation: important note:
+
+Since yarn 1.0, you should use `yarn upgrade --latest` instead.
+
+
 ## Installation
 
 ```
