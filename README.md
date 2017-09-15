@@ -8,6 +8,8 @@ This is a command line utility program to upgrade all the packages in your `pack
 
 Since yarn 1.0, you should use `yarn upgrade --latest` instead.
 
+You can **still** use this tool if the default yarn commands don't work for you.
+
 
 ## Installation
 
@@ -42,11 +44,11 @@ yarn-upgrade-all
 
 ## How does it work?
 
-For every package in `package.json`, run `yarn upgrade <package-name>`.
+For every package in `package.json`, run `yarn remove <package-name> && yarn add <package-name>`.
 
 
-## Why not simply `yarn upgrade` ?
+## Why not simply `yarn upgrade --latest` ?
 
-According to [the doc](https://yarnpkg.com/lang/en/docs/cli/upgrade/), `yarn upgrade` respects version ranges specified in the `package.json` file. Use it if it's the expected behavior.
+Most of the time `yarn upgrade --latest` works. But I did meet some cases when it didn't work.
 
-Use `yarn-upgrade-all` to upgrade your packages to the latest version, regardless of the version ranges specified in the `package.json` file.
+I am not sure of the reason, maybe it's yarn's bug.
