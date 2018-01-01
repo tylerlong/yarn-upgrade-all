@@ -4,13 +4,6 @@ This is a command line utility program to upgrade all the packages in your `pack
 (potentially upgrading packages across major versions).
 
 
-## :exclamation: important note:
-
-Since yarn 1.0, you should use `yarn upgrade --latest` instead.
-
-You can **still** use this tool if the default yarn commands don't work for you.
-
-
 ## Installation
 
 ```
@@ -49,6 +42,6 @@ For every package in `package.json`, run `yarn remove <package-name> && yarn add
 
 ## Why not simply `yarn upgrade --latest` ?
 
-Most of the time `yarn upgrade --latest` works. But I did meet some cases when it didn't work.
+Most of the time `yarn upgrade --latest` works. But I did meet some cases when it didn't work. I am not sure of the reason, maybe it's yarn's bug.
 
-I am not sure of the reason, maybe it's yarn's bug.
+This library is very robust because it goes the hard way.
