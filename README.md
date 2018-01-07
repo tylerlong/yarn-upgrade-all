@@ -34,6 +34,12 @@ cd <your-node-js-project>
 yarn-upgrade-all
 ```
 
+Or upgrade global packages:
+
+```
+yarn-upgrade-all --global
+```
+
 
 ## How does it work?
 
