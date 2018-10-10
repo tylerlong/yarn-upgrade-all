@@ -43,7 +43,7 @@ yarn-upgrade-all --global
 
 ## How does it work?
 
-For every package in `package.json`, run `yarn remove <package-name> && yarn add <package-name>`.
+For every package in `package.json`, run `yarn remove <package-name> && yarn add [--dev|--peer] <package-name>`.
 
 
 ## Why not simply `yarn upgrade --latest` ?
@@ -51,3 +51,29 @@ For every package in `package.json`, run `yarn remove <package-name> && yarn add
 Most of the time `yarn upgrade --latest` works. But I did meet some cases when it didn't work. I am not sure of the reason, maybe it's yarn's bug.
 
 This library is very robust because it goes the hard way.
+
+
+## What if a package failed to install?
+
+In that case, that package will be skipped and an error message will be printed.
+
+You need to read the error message and manually install that package.
+
+It is the recommended flow. Because if a package failed to install, most of the time, you need to manually troubleshoot the issue and fix the issue.
+
+
+## Ingore some packages
+
+You can add the following to `package.json` file:
+
+```json
+...
+"yarn-upgrade-all": {
+    "ignore": [
+        "react"
+    ]
+}
+...
+```
+
+With configuration above, `yarn-upgrade-all` won't upgrade `react` for you.
