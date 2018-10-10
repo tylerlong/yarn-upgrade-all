@@ -53,7 +53,13 @@ for (let element of ['dependencies', 'devDependencies', 'peerDependencies']) {
       if(ignorePkgs.indexOf(pkg) > -1) {
         continue
       }
-      const command = `yarn${global} remove ${pkg} && yarn${global} add${option} ${pkg}`
+      if(element === 'peerDependencies' && packageJson.devDependencies && packageJson.devDependencies[pkg]) {
+        continue
+      }
+      let command = `yarn${global} remove ${pkg} && yarn${global} add${option} ${pkg}`
+      if(element === 'devDependencies' && packageJson.peerDependencies && packageJson.peerDependencies[pkg]) {
+        command = `yarn${global} remove ${pkg} && yarn${global} add --peer ${pkg} && yarn${global} add --dev ${pkg}`
+      }
       try {
         logInfo(command)
         childProcess.execSync(command, { stdio: [] })
