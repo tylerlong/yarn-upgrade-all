@@ -9,6 +9,7 @@ const pkg = require('./package.json')
 
 commander.version(pkg.version)
   .option('-g --global', 'upgrade packages globally', false)
+  .option('-i --ignore-scripts', 'ignore postinstall script', false)
   .parse(process.argv)
 
 const logError = (message) => {
@@ -23,11 +24,17 @@ const logSuccess = (message) => {
 
 let packagePath = null
 let global = ''
+let params = ''
+
 if (commander.global) {
   global = ' global'
   packagePath = path.resolve(process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME'], '.config', 'yarn', 'global', 'package.json')
 } else {
   packagePath = path.resolve(process.cwd(), 'package.json')
+}
+
+if (commander.ignoreScripts) {
+  params += ' --ignore-scripts'
 }
 
 if (!fs.existsSync(packagePath)) {
@@ -56,9 +63,9 @@ for (let element of ['dependencies', 'devDependencies', 'peerDependencies']) {
       if(element === 'peerDependencies' && packageJson.devDependencies && packageJson.devDependencies[pkg]) {
         continue
       }
-      let command = `yarn${global} remove ${pkg} && yarn${global} add${option} ${pkg}`
+      let command = `yarn${global} remove ${pkg} && yarn${global} add${option} ${pkg} ${params}`
       if(element === 'devDependencies' && packageJson.peerDependencies && packageJson.peerDependencies[pkg]) {
-        command = `yarn${global} remove ${pkg} && yarn${global} add --peer ${pkg} && yarn${global} add --dev ${pkg}`
+        command = `yarn${global} remove ${pkg} && yarn${global} add --peer ${pkg} && yarn${global} add --dev ${pkg} ${params}`
       }
       try {
         logInfo(command)
