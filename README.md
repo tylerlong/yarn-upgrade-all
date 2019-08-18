@@ -61,7 +61,7 @@ You need to read the error message and manually install that package.
 It is the recommended flow. Because if a package failed to install, most of the time, you need to manually troubleshoot the issue and fix the issue.
 
 
-## Ingore some packages
+## Ignore some packages
 
 You can add the following to `package.json` file:
 
