@@ -48,22 +48,22 @@ const options = {
   peerDependencies: ' --peer'
 }
 let ignorePkgs = []
-if(packageJson['yarn-upgrade-all'] && packageJson['yarn-upgrade-all'].ignore) {
+if (packageJson['yarn-upgrade-all'] && packageJson['yarn-upgrade-all'].ignore) {
   ignorePkgs = packageJson['yarn-upgrade-all'].ignore
 }
-for (let element of ['dependencies', 'devDependencies', 'peerDependencies']) {
+for (const element of ['dependencies', 'devDependencies', 'peerDependencies']) {
   if (packageJson[element]) {
     const option = options[element]
     const packages = Object.keys(packageJson[element])
-    for (let pkg of packages) {
-      if(ignorePkgs.indexOf(pkg) > -1) {
+    for (const pkg of packages) {
+      if (ignorePkgs.indexOf(pkg) > -1) {
         continue
       }
-      if(element === 'peerDependencies' && packageJson.devDependencies && packageJson.devDependencies[pkg]) {
+      if (element === 'peerDependencies' && packageJson.devDependencies && packageJson.devDependencies[pkg]) {
         continue
       }
       let command = `yarn${global} remove ${pkg} && yarn${global} add${option} ${pkg} ${params}`
-      if(element === 'devDependencies' && packageJson.peerDependencies && packageJson.peerDependencies[pkg]) {
+      if (element === 'devDependencies' && packageJson.peerDependencies && packageJson.peerDependencies[pkg]) {
         command = `yarn${global} remove ${pkg} && yarn${global} add --peer ${pkg} ${params}&& yarn${global} add --dev ${pkg} ${params}`
       }
       try {
