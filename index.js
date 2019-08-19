@@ -24,8 +24,6 @@ const logSuccess = (message) => {
 
 let packagePath = null
 let global = ''
-let params = ''
-
 if (commander.global) {
   global = ' global'
   packagePath = path.resolve(process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME'], '.config', 'yarn', 'global', 'package.json')
@@ -33,6 +31,7 @@ if (commander.global) {
   packagePath = path.resolve(process.cwd(), 'package.json')
 }
 
+let params = ''
 if (commander.ignoreScripts) {
   params += ' --ignore-scripts'
 }
@@ -65,7 +64,7 @@ for (let element of ['dependencies', 'devDependencies', 'peerDependencies']) {
       }
       let command = `yarn${global} remove ${pkg} && yarn${global} add${option} ${pkg} ${params}`
       if(element === 'devDependencies' && packageJson.peerDependencies && packageJson.peerDependencies[pkg]) {
-        command = `yarn${global} remove ${pkg} && yarn${global} add --peer ${pkg} && yarn${global} add --dev ${pkg} ${params}`
+        command = `yarn${global} remove ${pkg} && yarn${global} add --peer ${pkg} ${params}&& yarn${global} add --dev ${pkg} ${params}`
       }
       try {
         logInfo(command)
