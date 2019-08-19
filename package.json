@@ -1,6 +1,6 @@
 {
   "name": "yarn-upgrade-all",
-  "version": "0.5.0",
+  "version": "0.5.2",
   "description": "This is a command line utility program to upgrade all the packages in your package.json to the latest version (potentially upgrading packages across major versions).",
   "bin": {
     "yarn-upgrade-all": "./index.js"
@@ -12,10 +12,10 @@
     "upgrade": "node index.js"
   },
   "dependencies": {
-    "chalk": "^2.4.1",
-    "commander": "^2.19.0"
+    "chalk": "^2.4.2",
+    "commander": "^3.0.0"
   },
   "devDependencies": {
-    "standard": "^12.0.1"
+    "standard": "^13.1.0"
   }
 }
