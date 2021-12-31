@@ -7,7 +7,13 @@
   },
   "repository": "git@github.com:tylerlong/yarn-upgrade-all.git",
   "author": "Tyler Long <tyler4long@gmail.com>",
-  "contributors": [{ "email": "hwss.s2@gmail.com", "name": "Gorniaky", "url": "http://github.com/Gorniaky" }],
+  "contributors": [
+    {
+      "email": "hwss.s2@gmail.com",
+      "name": "Gorniaky",
+      "url": "http://github.com/Gorniaky"
+    }
+  ],
   "license": "MIT",
   "scripts": {
     "upgrade": "node index.js"
@@ -17,6 +23,8 @@
     "commander": "^3.0.0"
   },
   "devDependencies": {
-    "standard": "^13.1.0"
+    "@types/node": "^14.11.2",
+    "gts": "^3.1.0",
+    "typescript": "^4.0.3"
   }
 }

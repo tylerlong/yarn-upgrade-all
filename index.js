@@ -76,4 +76,3 @@ for (const element of ['dependencies', 'devDependencies', 'peerDependencies']) {
     logError(`${command} - ${e}`)
   }
 }
-
