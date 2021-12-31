@@ -51,28 +51,29 @@ let ignorePkgs = []
 if (packageJson['yarn-upgrade-all'] && packageJson['yarn-upgrade-all'].ignore) {
   ignorePkgs = packageJson['yarn-upgrade-all'].ignore
 }
+
+/**
+ * @Gorniaky - you don't need to uninstall packages to update them. Now updates much faster.
+ */
 for (const element of ['dependencies', 'devDependencies', 'peerDependencies']) {
-  if (packageJson[element]) {
-    const option = options[element]
-    const packages = Object.keys(packageJson[element])
-    for (const pkg of packages) {
-      if (ignorePkgs.indexOf(pkg) > -1) {
-        continue
-      }
-      if (element === 'peerDependencies' && packageJson.devDependencies && packageJson.devDependencies[pkg]) {
-        continue
-      }
-      let command = `yarn${global} remove ${pkg} && yarn${global} add${option} ${pkg} ${params}`
-      if (element === 'devDependencies' && packageJson.peerDependencies && packageJson.peerDependencies[pkg]) {
-        command = `yarn${global} remove ${pkg} && yarn${global} add --peer ${pkg} ${params}&& yarn${global} add --dev ${pkg} ${params}`
-      }
-      try {
-        logInfo(command)
-        childProcess.execSync(command, { stdio: [] })
-        logSuccess(command)
-      } catch (e) {
-        logError(`${command} - ${e}`)
-      }
-    }
+  if (!packageJson[element]) continue
+  const option = options[element]
+  const packages = Object.keys(packageJson[element])
+  let command = `yarn${global} add${option}`
+
+  for (const pkg of packages) {
+    if (ignorePkgs.indexOf(pkg) > -1) continue
+
+    command = `${command} ${pkg}`
+  }
+  command = `${command} ${params}`
+
+  try {
+    logInfo(command)
+    childProcess.execSync(command, { stdio: [] })
+    logSuccess(command)
+  } catch (e) {
+    logError(`${command} - ${e}`)
   }
 }
+
