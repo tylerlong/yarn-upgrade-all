@@ -1,91 +1,135 @@
 #!/usr/bin/env node
-import {existsSync} from 'fs';
-import {resolve} from 'path';
 import {execSync} from 'child_process';
 import {Command} from 'commander';
+import {existsSync} from 'fs';
+import {resolve} from 'path';
+import {version} from '../package.json';
 
-import pkg from '../package.json';
+new (class Commander extends Command {
+  global?: string;
+  ignorePkgs!: string[];
+  ignoreScripts?: string;
+  packageJson!: PackageJson;
+  packagePath!: string;
 
-const commander: Command & {global?: boolean; ignoreScripts?: boolean} =
-  new Command();
+  constructor() {
+    super();
+    this.version(version)
+      .option('-g --global', 'upgrade packages globally', false)
+      .option('-i --ignore-scripts', 'ignore postinstall script', false)
+      .parse(process.argv);
 
-commander
-  .version(pkg.version)
-  .option('-g --global', 'upgrade packages globally', false)
-  .option('-i --ignore-scripts', 'ignore postinstall script', false)
-  .parse(process.argv);
+    this.global = this.getOptionValue('global') ? 'global' : '';
+    this.ignoreScripts = this.getOptionValue('ignoreScripts')
+      ? '--ignore-scripts'
+      : '';
 
-const logError = (message: string) => {
-  console.log('\x1b[31m', '[Error]:', message);
-};
-const logInfo = (message: string) => {
-  console.log('\x1b[34m', '[Start]:', message);
-};
-const logSuccess = (message: string) => {
-  console.log('\x1b[32m', '[Done]:', message);
-};
+    this.packagePath = this.getPackagePath();
 
-let packagePath = null;
-let global = '';
-if (commander.global) {
-  global = ' global';
-  packagePath = resolve(
-    process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME']!,
-    '.config',
-    'yarn',
-    'global',
-    'package.json'
-  );
-} else {
-  packagePath = resolve(process.cwd(), 'package.json');
-}
-
-let params = '';
-if (commander.ignoreScripts) {
-  params += ' --ignore-scripts';
-}
-
-if (!existsSync(packagePath)) {
-  logError('Cannot find package.json file in the current directory');
-  process.exit(1);
-}
-
-const packageJson = require(packagePath);
-const options: {[key: string]: string} = {
-  dependencies: '',
-  devDependencies: ' --dev',
-  peerDependencies: ' --peer',
-};
-let ignorePkgs = [];
-if (packageJson['yarn-upgrade-all'] && packageJson['yarn-upgrade-all'].ignore) {
-  ignorePkgs = packageJson['yarn-upgrade-all'].ignore;
-}
-
-/**
- * @Gorniaky - you don't need to uninstall packages to update them. Now updates much faster.
- */
-for (const element of ['dependencies', 'devDependencies', 'peerDependencies']) {
-  if (!packageJson[element]) {
-    continue;
-  }
-  const option = options[element];
-  const packages = Object.keys(packageJson[element]);
-  let command = `yarn${global} add${option}`;
-
-  for (const pkg of packages) {
-    if (ignorePkgs.indexOf(pkg) > -1) {
-      continue;
+    if (!existsSync(this.packagePath)) {
+      this.logError('Cannot find package.json file in the current directory');
+      return;
     }
 
-    command = `${command} ${pkg}`;
-  }
-  command = `${command} ${params}`;
+    this.packageJson = require(this.packagePath);
 
-  try {
-    logInfo(command);
-    execSync(command, {stdio: []});
-    logSuccess(command);
-  } catch (e) {
-    logError(`${command} - ${e}`);
+    this.ignorePkgs = this.packageJson['yarn-upgrade-all']?.ignore || [];
+
+    this.execute();
   }
-}
+
+  execute() {
+    for (const dependenciesType of this.dependenciesTypes) {
+      if (!this.packageJson[dependenciesType]) continue;
+
+      const elements = this.packageJson[dependenciesType];
+
+      const option = this.dependenciesOptions[dependenciesType];
+
+      const packages = Object.keys(elements).filter(
+        pkg => !this.pattern.fixedVersion.test(elements[pkg])
+      );
+
+      const commandArray = ['yarn', this.global, 'add', option];
+
+      for (const pkg of packages) {
+        if (this.ignorePkgs.includes(pkg)) continue;
+
+        if (this.pattern.updateVersion.test(elements[pkg])) {
+          commandArray.push(pkg);
+
+          continue;
+        }
+
+        commandArray.push(`${pkg}@${elements[pkg]}`);
+      }
+
+      commandArray.push(this.ignoreScripts);
+
+      const command = commandArray.join(' ');
+
+      try {
+        this.logInfo(command);
+
+        execSync(command, {stdio: []});
+
+        this.logSuccess(command);
+      } catch (e) {
+        this.logError(`${command} - ${e}`);
+      }
+    }
+
+    console.log('\x1b[0m'); // clear console color
+  }
+
+  get dependenciesTypes() {
+    return ['dependencies', 'devDependencies', 'peerDependencies'];
+  }
+
+  get dependenciesOptions(): {[key: string]: string} {
+    return {
+      dependencies: '',
+      devDependencies: '--dev',
+      peerDependencies: '--peer',
+    };
+  }
+
+  get pattern() {
+    return {
+      fixedVersion: /^(\d|~)([.\d]+)$/,
+      updateVersion: /^(\^)([\d.]+)$/,
+    };
+  }
+
+  getPackagePath(global = this.getOptionValue('global')) {
+    if (global)
+      return resolve(
+        process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME']!,
+        '.config',
+        'yarn',
+        'global',
+        'package.json'
+      );
+
+    return resolve(process.cwd(), 'package.json');
+  }
+
+  logError(message: string) {
+    console.log('\x1b[31m', '[Error]:', message);
+  }
+
+  logInfo(message: string) {
+    console.log('\x1b[34m', '[Start]:', message);
+  }
+
+  logSuccess(message: string) {
+    console.log('\x1b[32m', '[Done]:', message);
+  }
+})();
+
+type PackageJson = {[key: string]: {[key: string]: string}} & {
+  dependencies?: {[key: string]: string};
+  devDependencies?: {[key: string]: string};
+  peerDependencies?: {[key: string]: string};
+  'yarn-upgrade-all'?: {[key: string]: string} & {ignore: string[]};
+};

@@ -68,3 +68,14 @@ You can add the following to `package.json` file:
 ```
 
 With configuration above, `yarn-upgrade-all` won't upgrade `react` for you.
+
+## Ignore fixed package versions
+
+```json
+...
+"lodash": "^1.2.3", // It's updated
+"lodash": "lodash/lodash", // It's updated, but it doesn't change package.json
+"lodash": "~1.2.3", // It's ignored
+"lodash": "1.2.3", // It's ignored
+...
+```
