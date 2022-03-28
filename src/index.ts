@@ -3,17 +3,8 @@
 import { existsSync } from 'fs';
 import { resolve } from 'path';
 import { execSync } from 'child_process';
-import { Command } from 'commander';
 
-import pkg from '../package.json';
-
-const commander: Command & { global?: boolean; ignoreScripts?: boolean } = new Command();
-
-commander
-  .version(pkg.version)
-  .option('-g --global', 'upgrade packages globally', false)
-  .option('-i --ignore-scripts', 'ignore postinstall script', false)
-  .parse(process.argv);
+const argv = new Set(process.argv);
 
 const logError = (message: string) => {
   console.log('\x1b[31m', '[Error]:', message);
@@ -27,7 +18,7 @@ const logSuccess = (message: string) => {
 
 let packagePath = null;
 let global = '';
-if (commander.global) {
+if (argv.has('-g') || argv.has('--global')) {
   global = ' global';
   packagePath = resolve(
     process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME']!,
@@ -40,13 +31,10 @@ if (commander.global) {
   packagePath = resolve(process.cwd(), 'package.json');
 }
 
-let params = '';
-if (commander.ignoreScripts) {
-  params += ' --ignore-scripts';
-}
+const params = Array.from(argv).filter((arg) => arg.startsWith('-') && arg !== '-g' && arg !== '--global').join(' ');
 
 if (!existsSync(packagePath)) {
-  logError('Cannot find package.json file in the current directory');
+  logError(`Cannot find ${packagePath}`);
   process.exit(1);
 }
 

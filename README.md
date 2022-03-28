@@ -3,17 +3,72 @@
 This is a command line utility program to upgrade all the packages in your `package.json` to the latest version
 (potentially upgrading packages across major versions).
 
+
 ## Installation
 
 ```sh
 yarn add --dev yarn-upgrade-all
 ```
 
+
 ## Usage
 
 ```sh
-npx yarn-upgrade-all
+yarn yarn-upgrade-all
 ```
+
+
+
+
+## How does it work?
+
+For every type of dependencies in `package.json`, run
+
+```
+yarn add [--dev|--peer] <package-names>`.
+```
+
+
+## Additional options
+
+You may pass additional options to the `yarn add` command:
+
+```
+yarn yarn-upgrade-all --option-1 --option-2
+```
+
+Which will invoke:
+
+```
+yarn add [--dev|--peer] <package-names> --option-1 --option-2
+```
+
+
+## What if a package failed to install?
+
+In that case, that package will be skipped and an error message will be printed.
+
+You need to read the error message and manually install that package.
+
+It is the recommended flow. Because if a package failed to install, most of the time, you need to manually troubleshoot the issue and fix the issue.
+
+
+## Ignore some packages
+
+You can add the following to `package.json` file:
+
+```json
+...
+"yarn-upgrade-all": {
+    "ignore": [
+        "react"
+    ]
+}
+...
+```
+
+With configuration above, `yarn-upgrade-all` won't upgrade `react` for you.
+
 
 ## Installation globally
 
@@ -31,40 +86,5 @@ npm install -g yarn-upgrade-all
 
 #### Upgrade global packages
 
-```sh
-yarn-upgrade-all --global
-```
 
-## How does it work?
-
-For every type of dependencies in `package.json`, run `yarn add [--dev|--peer] <package-names>`.
-
-## Why not simply `yarn upgrade --latest` ?
-
-Most of the time `yarn upgrade --latest` works. But I did meet some cases when it didn't work. I am not sure of the reason, maybe it's yarn's bug.
-
-This library is very robust because it goes the hard way.
-
-## What if a package failed to install?
-
-In that case, that package will be skipped and an error message will be printed.
-
-You need to read the error message and manually install that package.
-
-It is the recommended flow. Because if a package failed to install, most of the time, you need to manually troubleshoot the issue and fix the issue.
-
-## Ignore some packages
-
-You can add the following to `package.json` file:
-
-```json
-...
-"yarn-upgrade-all": {
-    "ignore": [
-        "react"
-    ]
-}
-...
-```
-
-With configuration above, `yarn-upgrade-all` won't upgrade `react` for you.
+`yarn-upgrade-all --global` or `yarn-upgrade-all -g`

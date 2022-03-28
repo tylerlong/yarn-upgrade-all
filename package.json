@@ -1,9 +1,9 @@
 {
   "name": "yarn-upgrade-all",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "This is a command line utility program to upgrade all the packages in your package.json to the latest version (potentially upgrading packages across major versions).",
   "bin": {
-    "yarn-upgrade-all": "./build/src/index.js"
+    "yarn-upgrade-all": "./build/index.js"
   },
   "repository": "git@github.com:tylerlong/yarn-upgrade-all.git",
   "author": "Tyler Long <tyler4long@gmail.com>",
@@ -19,9 +19,6 @@
     "test": "ts-node src/index.ts",
     "lint": "eslint . --fix",
     "prepublishOnly": "tsc"
-  },
-  "dependencies": {
-    "commander": "^9.1.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.23",
