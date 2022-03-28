@@ -1,13 +1,13 @@
 #!/usr/bin/env node
-import {existsSync} from 'fs';
-import {resolve} from 'path';
-import {execSync} from 'child_process';
-import {Command} from 'commander';
+/* eslint-disable no-console */
+import { existsSync } from 'fs';
+import { resolve } from 'path';
+import { execSync } from 'child_process';
+import { Command } from 'commander';
 
 import pkg from '../package.json';
 
-const commander: Command & {global?: boolean; ignoreScripts?: boolean} =
-  new Command();
+const commander: Command & { global?: boolean; ignoreScripts?: boolean } = new Command();
 
 commander
   .version(pkg.version)
@@ -34,7 +34,7 @@ if (commander.global) {
     '.config',
     'yarn',
     'global',
-    'package.json'
+    'package.json',
   );
 } else {
   packagePath = resolve(process.cwd(), 'package.json');
@@ -50,8 +50,9 @@ if (!existsSync(packagePath)) {
   process.exit(1);
 }
 
+// eslint-disable-next-line import/no-dynamic-require
 const packageJson = require(packagePath);
-const options: {[key: string]: string} = {
+const options: { [key: string]: string } = {
   dependencies: '',
   devDependencies: ' --dev',
   peerDependencies: ' --peer',
@@ -64,28 +65,27 @@ if (packageJson['yarn-upgrade-all'] && packageJson['yarn-upgrade-all'].ignore) {
 /**
  * @Gorniaky - you don't need to uninstall packages to update them. Now updates much faster.
  */
-for (const element of ['dependencies', 'devDependencies', 'peerDependencies']) {
+['dependencies', 'devDependencies', 'peerDependencies'].forEach((element) => {
   if (!packageJson[element]) {
-    continue;
+    return;
   }
   const option = options[element];
-  const packages = Object.keys(packageJson[element]);
+  const deps = Object.keys(packageJson[element]);
   let command = `yarn${global} add${option}`;
 
-  for (const pkg of packages) {
-    if (ignorePkgs.indexOf(pkg) > -1) {
-      continue;
+  deps.forEach((dep) => {
+    if (ignorePkgs.indexOf(dep) > -1) {
+      return;
     }
-
-    command = `${command} ${pkg}`;
-  }
+    command = `${command} ${dep}`;
+  });
   command = `${command} ${params}`;
 
   try {
     logInfo(command);
-    execSync(command, {stdio: []});
+    execSync(command, { stdio: [] });
     logSuccess(command);
   } catch (e) {
     logError(`${command} - ${e}`);
   }
-}
+});
