@@ -1,17 +1,16 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
-import { existsSync } from 'fs';
-import { resolve } from 'path';
 import { execSync } from 'child_process';
-
+import { existsSync, PathLike } from 'fs';
+import { resolve } from 'path';
 import { logError, logInfo, logSuccess } from './utils';
 
 const inputs = new Set(process.argv);
-const argv = ['yarn'];
 
-let packagePath = null;
+let packagePath: PathLike;
+let global = '';
 if (inputs.has('-g') || inputs.has('--global')) {
-  argv.push('global');
+  global = 'global';
   packagePath = resolve(
     process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME']!,
     '.config',
@@ -48,7 +47,7 @@ Object.keys(depTypes).forEach((depType) => {
   if (deps.length === 0) {
     return;
   }
-  argv.push('add', ...deps, depTypes[depType], ...params);
+  const argv = ['yarn', global, 'add', ...deps, depTypes[depType], ...params];
   const command = argv.filter((c) => c !== '').join(' ');
   try {
     logInfo(command);
