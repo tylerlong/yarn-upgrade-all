@@ -43,7 +43,8 @@ Object.keys(depTypes).forEach((depType) => {
   if (!packageJson[depType]) {
     return;
   }
-  const deps = Object.keys(packageJson[depType]).filter((dep) => !ignorePkgs.has(dep));
+  const deps = Object.keys(packageJson[depType]).filter((dep) => !ignorePkgs.has(dep))
+    .filter((dep) => !packageJson[depType][dep].startsWith('file:'));
   if (deps.length === 0) {
     return;
   }
