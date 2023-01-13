@@ -70,6 +70,17 @@ You can add the following to `package.json` file:
 With configuration above, `yarn-upgrade-all` won't upgrade `react` for you.
 
 
+## Local packages
+
+Local packages are ignored if they start with `file:`:
+
+```json
+"dependencies": {
+  "foo": "file:../foo"
+}
+```
+
+
 ## Installation globally
 
 ```sh
