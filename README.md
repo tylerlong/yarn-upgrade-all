@@ -90,7 +90,7 @@ yarn global add yarn-upgrade-all
 #### Installation on Windows
 
 ```sh
-npm install -g yarn-upgrade-all
+npm install yarn-upgrade-all --location=global
 ```
 
 :exclamation: Don't use `yarn` to install it on Windows because there is a bug: [yarnpkg/yarn#2224](https://github.com/yarnpkg/yarn/issues/2224).
