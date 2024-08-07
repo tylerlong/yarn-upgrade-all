@@ -3,7 +3,11 @@ import { execSync } from 'child_process';
 import type { PathLike } from 'fs';
 import { existsSync } from 'fs';
 import { resolve } from 'path';
-import { logError, logInfo, logSuccess } from './utils';
+import { Red, Blue, Green } from 'color-loggers';
+
+const error = new Red('[Error]: ');
+const info = new Blue('[Start]: ');
+const success = new Green('[Done]: ');
 
 const inputs = new Set(process.argv);
 
@@ -22,7 +26,7 @@ if (inputs.has('-g') || inputs.has('--global')) {
   packagePath = resolve(process.cwd(), 'package.json');
 }
 if (!existsSync(packagePath)) {
-  logError(`Cannot find ${packagePath}`);
+  error.log(`Cannot find ${packagePath}`);
   process.exit(1);
 }
 
@@ -52,10 +56,10 @@ Object.keys(depTypes).forEach((depType) => {
   const argv = ['yarn', global, 'add', ...deps, depTypes[depType], ...params];
   const command = argv.filter((c) => c !== '').join(' ');
   try {
-    logInfo(command);
+    info.log(command);
     execSync(command, { stdio: [] });
-    logSuccess(command);
+    success.log(command);
   } catch (e) {
-    logError(`${command} - ${e}`);
+    error.log(`${command} - ${e}`);
   }
 });

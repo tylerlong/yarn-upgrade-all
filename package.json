@@ -1,6 +1,6 @@
 {
   "name": "yarn-upgrade-all",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "This is a command line utility program to upgrade all the packages in your package.json to the latest version (potentially upgrading packages across major versions).",
   "repository": "git@github.com:tylerlong/yarn-upgrade-all.git",
   "license": "MIT",
@@ -19,6 +19,9 @@
     "lint": "tsc --noEmit --target ESNext --moduleResolution NodeNext --module NodeNext ./src/*.ts && eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
     "prepublishOnly": "tsc",
     "test": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "color-loggers": "^0.3.1"
   },
   "devDependencies": {
     "@types/node": "^22.1.0",
