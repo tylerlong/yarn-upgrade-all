@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-/* eslint-disable no-console */
 import { execSync } from 'child_process';
-import { existsSync, PathLike } from 'fs';
+import type { PathLike } from 'fs';
+import { existsSync } from 'fs';
 import { resolve } from 'path';
 import { logError, logInfo, logSuccess } from './utils';
 
@@ -26,7 +26,7 @@ if (!existsSync(packagePath)) {
   process.exit(1);
 }
 
-// eslint-disable-next-line import/no-dynamic-require
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const packageJson = require(packagePath);
 let ignorePkgs = new Set();
 if (packageJson['yarn-upgrade-all'] && packageJson['yarn-upgrade-all'].ignore) {
@@ -43,7 +43,8 @@ Object.keys(depTypes).forEach((depType) => {
   if (!packageJson[depType]) {
     return;
   }
-  const deps = Object.keys(packageJson[depType]).filter((dep) => !ignorePkgs.has(dep))
+  const deps = Object.keys(packageJson[depType])
+    .filter((dep) => !ignorePkgs.has(dep))
     .filter((dep) => !packageJson[depType][dep].startsWith('file:'));
   if (deps.length === 0) {
     return;
