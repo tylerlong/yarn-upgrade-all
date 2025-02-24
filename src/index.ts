@@ -4,6 +4,7 @@ import type { PathLike } from "fs";
 import { existsSync } from "fs";
 import { resolve } from "path";
 import { Blue, Green, Red } from "color-loggers";
+import process from "node:process";
 
 const error = new Red("[Error]: ");
 const info = new Blue("[Start]: ");
@@ -30,7 +31,6 @@ if (!existsSync(packagePath)) {
   process.exit(1);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
 const packageJson = require(packagePath);
 let ignorePkgs = new Set();
 if (packageJson["yarn-upgrade-all"] && packageJson["yarn-upgrade-all"].ignore) {

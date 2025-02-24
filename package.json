@@ -16,7 +16,7 @@
     "yarn-upgrade-all": "./build/index.js"
   },
   "scripts": {
-    "lint": "tsc --noEmit --target ESNext --moduleResolution NodeNext --module NodeNext ./src/*.ts && eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
+    "lint": "deno fmt && deno lint --fix && sort-package-json",
     "prepublishOnly": "tsc",
     "test": "tsx src/index.ts"
   },
@@ -25,21 +25,8 @@
   },
   "devDependencies": {
     "@types/node": "^22.13.5",
-    "@typescript-eslint/eslint-plugin": "^8.24.1",
-    "@typescript-eslint/parser": "^8.24.1",
-    "eslint": "^8.57.0",
-    "eslint-config-alloy": "^5.1.2",
-    "eslint-config-prettier": "^10.0.1",
-    "eslint-plugin-prettier": "^5.2.3",
-    "prettier": "^3.5.2",
     "sort-package-json": "^2.14.0",
     "tsx": "^4.19.3",
-    "ttpt": "^0.13.0",
     "typescript": "^5.7.3"
-  },
-  "yarn-upgrade-all": {
-    "ignore": [
-      "eslint"
-    ]
   }
 }
