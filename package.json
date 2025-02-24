@@ -1,6 +1,6 @@
 {
   "name": "yarn-upgrade-all",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "description": "This is a command line utility program to upgrade all the packages in your package.json to the latest version (potentially upgrading packages across major versions).",
   "repository": "git@github.com:tylerlong/yarn-upgrade-all.git",
   "license": "MIT",
@@ -21,21 +21,21 @@
     "test": "tsx src/index.ts"
   },
   "dependencies": {
-    "color-loggers": "^0.3.1"
+    "color-loggers": "^0.3.2"
   },
   "devDependencies": {
-    "@types/node": "^22.1.0",
-    "@typescript-eslint/eslint-plugin": "^8.0.1",
-    "@typescript-eslint/parser": "^8.0.1",
+    "@types/node": "^22.13.5",
+    "@typescript-eslint/eslint-plugin": "^8.24.1",
+    "@typescript-eslint/parser": "^8.24.1",
     "eslint": "^8.57.0",
     "eslint-config-alloy": "^5.1.2",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "prettier": "^3.3.3",
-    "sort-package-json": "^2.10.0",
-    "tsx": "^4.16.5",
-    "ttpt": "^0.10.2",
-    "typescript": "^5.5.4"
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "prettier": "^3.5.2",
+    "sort-package-json": "^2.14.0",
+    "tsx": "^4.19.3",
+    "ttpt": "^0.13.0",
+    "typescript": "^5.7.3"
   },
   "yarn-upgrade-all": {
     "ignore": [
