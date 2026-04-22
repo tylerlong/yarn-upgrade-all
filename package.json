@@ -1,32 +1,34 @@
 {
-  "name": "yarn-upgrade-all",
-  "version": "0.7.5",
-  "description": "This is a command line utility program to upgrade all the packages in your package.json to the latest version (potentially upgrading packages across major versions).",
-  "repository": "git@github.com:tylerlong/yarn-upgrade-all.git",
-  "license": "MIT",
-  "author": "Tyler Long <tyler4long@gmail.com>",
-  "contributors": [
-    {
-      "name": "Gorniaky",
-      "email": "hwss.s2@gmail.com",
-      "url": "http://github.com/Gorniaky"
-    }
-  ],
-  "bin": {
-    "yarn-upgrade-all": "./build/index.js"
-  },
-  "scripts": {
-    "lint": "deno fmt && deno lint --fix && sort-package-json",
-    "prepublishOnly": "tsc",
-    "test": "tsx src/index.ts"
-  },
-  "dependencies": {
-    "color-loggers": "^0.3.2"
-  },
-  "devDependencies": {
-    "@types/node": "^25.6.0",
-    "sort-package-json": "^3.6.1",
-    "tsx": "^4.21.0",
-    "typescript": "^6.0.3"
-  }
+	"name": "yarn-upgrade-all",
+	"version": "0.7.5",
+	"description": "This is a command line utility program to upgrade all the packages in your package.json to the latest version (potentially upgrading packages across major versions).",
+	"repository": "git@github.com:tylerlong/yarn-upgrade-all.git",
+	"license": "MIT",
+	"author": "Tyler Long <tyler4long@gmail.com>",
+	"contributors": [
+		{
+			"name": "Gorniaky",
+			"email": "hwss.s2@gmail.com",
+			"url": "http://github.com/Gorniaky"
+		}
+	],
+	"bin": {
+		"yarn-upgrade-all": "./build/index.js"
+	},
+	"scripts": {
+		"lint": "biome lint --write .",
+		"format": "biome format --write .",
+		"check": "biome check .",
+		"prepublishOnly": "tsc",
+		"test": "tsx src/index.ts"
+	},
+	"dependencies": {
+		"color-loggers": "^0.3.2"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.0",
+		"@types/node": "^25.6.0",
+		"tsx": "^4.21.0",
+		"typescript": "^6.0.3"
+	}
 }

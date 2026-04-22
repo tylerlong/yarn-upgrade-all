@@ -2,6 +2,60 @@
 # yarn lockfile v1
 
 
+"@biomejs/biome@^2.4.0":
+  version "2.4.12"
+  resolved "https://registry.yarnpkg.com/@biomejs/biome/-/biome-2.4.12.tgz#f306554152dabf74b9ca0196af56b800e4d60de3"
+  integrity sha512-Rro7adQl3NLq/zJCIL98eElXKI8eEiBtoeu5TbXF/U3qbjuSc7Jb5rjUbeHHcquDWeSf3HnGP7XI5qGrlRk/pA==
+  optionalDependencies:
+    "@biomejs/cli-darwin-arm64" "2.4.12"
+    "@biomejs/cli-darwin-x64" "2.4.12"
+    "@biomejs/cli-linux-arm64" "2.4.12"
+    "@biomejs/cli-linux-arm64-musl" "2.4.12"
+    "@biomejs/cli-linux-x64" "2.4.12"
+    "@biomejs/cli-linux-x64-musl" "2.4.12"
+    "@biomejs/cli-win32-arm64" "2.4.12"
+    "@biomejs/cli-win32-x64" "2.4.12"
+
+"@biomejs/cli-darwin-arm64@2.4.12":
+  version "2.4.12"
+  resolved "https://registry.yarnpkg.com/@biomejs/cli-darwin-arm64/-/cli-darwin-arm64-2.4.12.tgz#5a67a718bbf69e5736b01a68af92e6ca8a5bb2fa"
+  integrity sha512-BnMU4Pc3ciEVteVpZ0BK33MLr7X57F5w1dwDLDn+/iy/yTrA4Q/N2yftidFtsA4vrDh0FMXDpacNV/Tl3fbmng==
+
+"@biomejs/cli-darwin-x64@2.4.12":
+  version "2.4.12"
+  resolved "https://registry.yarnpkg.com/@biomejs/cli-darwin-x64/-/cli-darwin-x64-2.4.12.tgz#78363ac83afd026cc3743392ff9cefa4213d5724"
+  integrity sha512-x9uJ0bI1rJsWICp3VH8w/5PnAVD3A7SqzDpbrfoUQX1QyWrK5jSU4fRLo/wSgGeplCivbxBRKmt5Xq4/nWvq8A==
+
+"@biomejs/cli-linux-arm64-musl@2.4.12":
+  version "2.4.12"
+  resolved "https://registry.yarnpkg.com/@biomejs/cli-linux-arm64-musl/-/cli-linux-arm64-musl-2.4.12.tgz#1623cbf793d7e0aabcad10e5e58479d4ed2a47f3"
+  integrity sha512-FhfpkAAlKL6kwvcVap0Hgp4AhZmtd3YImg0kK1jd7C/aSoh4SfsB2f++yG1rU0lr8Y5MCFJrcSkmssiL9Xnnig==
+
+"@biomejs/cli-linux-arm64@2.4.12":
+  version "2.4.12"
+  resolved "https://registry.yarnpkg.com/@biomejs/cli-linux-arm64/-/cli-linux-arm64-2.4.12.tgz#dd392f5fdbc988e7dd3d3a31dfa7eb62efa1316e"
+  integrity sha512-tOwuCuZZtKi1jVzbk/5nXmIsziOB6yqN8c9r9QM0EJYPU6DpQWf11uBOSCfFKKM4H3d9ZoarvlgMfbcuD051Pw==
+
+"@biomejs/cli-linux-x64-musl@2.4.12":
+  version "2.4.12"
+  resolved "https://registry.yarnpkg.com/@biomejs/cli-linux-x64-musl/-/cli-linux-x64-musl-2.4.12.tgz#c7617a734e5e962958ac2eb769be91fffb400dd0"
+  integrity sha512-dwTIgZrGutzhkQCuvHynCkyW6hJxUuyZqKKO0YNfaS2GUoRO+tOvxXZqZB6SkWAOdfZTzwaw8IEdUnIkHKHoew==
+
+"@biomejs/cli-linux-x64@2.4.12":
+  version "2.4.12"
+  resolved "https://registry.yarnpkg.com/@biomejs/cli-linux-x64/-/cli-linux-x64-2.4.12.tgz#ab149c1b44e4e6ddddc35c7018d8b919440b39ed"
+  integrity sha512-8pFeAnLU9QdW9jCIslB/v82bI0lhBmz2ZAKc8pVMFPO0t0wAHsoEkrUQUbMkIorTRIjbqyNZHA3lEXavsPWYSw==
+
+"@biomejs/cli-win32-arm64@2.4.12":
+  version "2.4.12"
+  resolved "https://registry.yarnpkg.com/@biomejs/cli-win32-arm64/-/cli-win32-arm64-2.4.12.tgz#965b264b86546635965d02b240fb1a604ca3b2fb"
+  integrity sha512-B0DLnx0vA9ya/3v7XyCaP+/lCpnbWbMOfUFFve+xb5OxyYvdHaS55YsSddr228Y+JAFk58agCuZTsqNiw2a6ig==
+
+"@biomejs/cli-win32-x64@2.4.12":
+  version "2.4.12"
+  resolved "https://registry.yarnpkg.com/@biomejs/cli-win32-x64/-/cli-win32-x64-2.4.12.tgz#ec05df80b2d25d5a54651bacdc5187a800e4f7f3"
+  integrity sha512-yMckRzTyZ83hkk8iDFWswqSdU8tvZxspJKnYNh7JZr/zhZNOlzH13k4ecboU6MurKExCe2HUkH75pGI/O2JwGA==
+
 "@esbuild/aix-ppc64@0.27.7":
   version "0.27.7"
   resolved "https://registry.yarnpkg.com/@esbuild/aix-ppc64/-/aix-ppc64-0.27.7.tgz#82b74f92aa78d720b714162939fb248c90addf53"
@@ -144,16 +198,6 @@ color-loggers@^0.3.2:
   resolved "https://registry.yarnpkg.com/color-loggers/-/color-loggers-0.3.2.tgz#04b12224f4ef3f78c1bdfb238f2cee50f72d7e51"
   integrity sha512-asfXyY1/9N+Cxt30jb0PFy5tccybuMnWVc9J8EJuYoJVlcsUshn+pt2QuyUB3BWKMXVvEH8jgLrCFs11Am8QZA==
 
-detect-indent@^7.0.2:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/detect-indent/-/detect-indent-7.0.2.tgz#16c516bf75d4b2f759f68214554996d467c8d648"
-  integrity sha512-y+8xyqdGLL+6sh0tVeHcfP/QDd8gUgbasolJJpY7NgeQGSZ739bDtSiaiDgtoicy+mtYB81dKLxO9xRhCyIB3A==
-
-detect-newline@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/detect-newline/-/detect-newline-4.0.1.tgz#fcefdb5713e1fb8cb2839b8b6ee22e6716ab8f23"
-  integrity sha512-qE3Veg1YXzGHQhlA6jzebZN2qVf6NX+A7m7qlhCGG30dJixrAQhYOsJjsnBjJkCSmuOPpCk30145fr8FV0bzog==
-
 esbuild@~0.27.0:
   version "0.27.7"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.27.7.tgz#bcadce22b2f3fd76f257e3a64f83a64986fea11f"
@@ -186,11 +230,6 @@ esbuild@~0.27.0:
     "@esbuild/win32-ia32" "0.27.7"
     "@esbuild/win32-x64" "0.27.7"
 
-fdir@^6.5.0:
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/fdir/-/fdir-6.5.0.tgz#ed2ab967a331ade62f18d077dae192684d50d350"
-  integrity sha512-tIbYtZbucOs0BRGqPJkshJUYdL+SDH7dVM8gjy+ERp3WAUjLEFJE+02kanyHtwjWOnwrKYBiwAmM0p4kLJAnXg==
-
 fsevents@~2.3.3:
   version "2.3.3"
   resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz#cac6407785d03675a2a5e1a5305c697b347d90d6"
@@ -203,56 +242,10 @@ get-tsconfig@^4.7.5:
   dependencies:
     resolve-pkg-maps "^1.0.0"
 
-git-hooks-list@^4.1.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/git-hooks-list/-/git-hooks-list-4.2.1.tgz#82b3ad119ec2da8a6d57228bd68d8e432afc418c"
-  integrity sha512-WNvqJjOxxs/8ZP9+DWdwWJ7cDsd60NHf39XnD82pDVrKO5q7xfPqpkK6hwEAmBa/ZSEE4IOoR75EzbbIuwGlMw==
-
-is-plain-obj@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.npmjs.org/is-plain-obj/-/is-plain-obj-4.1.0.tgz#d65025edec3657ce032fd7db63c97883eaed71f0"
-  integrity sha512-+Pgi+vMuUNkJyExiMBt5IlFoMyKnr5zhJ4Uspz58WOhBF5QoIZkFyNHIbBAtHwzVAgk5RtndVNsDRN61/mmDqg==
-
-picomatch@^4.0.4:
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-4.0.4.tgz#fd6f5e00a143086e074dffe4c924b8fb293b0589"
-  integrity sha512-QP88BAKvMam/3NxH6vj2o21R6MjxZUAd6nlwAS/pnGvN9IVLocLHxGYIzFhg6fUQ+5th6P4dv4eW9jX3DSIj7A==
-
 resolve-pkg-maps@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/resolve-pkg-maps/-/resolve-pkg-maps-1.0.0.tgz#616b3dc2c57056b5588c31cdf4b3d64db133720f"
   integrity sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==
-
-semver@^7.7.3:
-  version "7.7.4"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-7.7.4.tgz#28464e36060e991fa7a11d0279d2d3f3b57a7e8a"
-  integrity sha512-vFKC2IEtQnVhpT78h1Yp8wzwrf8CM+MzKMHGJZfBtzhZNycRFnXsHk6E5TxIkkMsgNS7mdX3AGB7x2QM2di4lA==
-
-sort-object-keys@^2.0.1:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/sort-object-keys/-/sort-object-keys-2.1.0.tgz#af24fbb7b91fcca945399a04fa900a10f9506242"
-  integrity sha512-SOiEnthkJKPv2L6ec6HMwhUcN0/lppkeYuN1x63PbyPRrgSPIuBJCiYxYyvWRTtjMlOi14vQUCGUJqS6PLVm8g==
-
-sort-package-json@^3.6.1:
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/sort-package-json/-/sort-package-json-3.6.1.tgz#901fe21d335af97d436383ac5b7c16c85cd3fac4"
-  integrity sha512-Chgejw1+10p2D0U2tB7au1lHtz6TkFnxmvZktyBCRyV0GgmF6nl1IxXxAsPtJVsUyg/fo+BfCMAVVFUVRkAHrQ==
-  dependencies:
-    detect-indent "^7.0.2"
-    detect-newline "^4.0.1"
-    git-hooks-list "^4.1.1"
-    is-plain-obj "^4.1.0"
-    semver "^7.7.3"
-    sort-object-keys "^2.0.1"
-    tinyglobby "^0.2.15"
-
-tinyglobby@^0.2.15:
-  version "0.2.16"
-  resolved "https://registry.yarnpkg.com/tinyglobby/-/tinyglobby-0.2.16.tgz#1c3b7eb953fce42b226bc5a1ee06428281aff3d6"
-  integrity sha512-pn99VhoACYR8nFHhxqix+uvsbXineAasWm5ojXoN8xEwK5Kd3/TrhNn1wByuD52UxWRLy8pu+kRMniEi6Eq9Zg==
-  dependencies:
-    fdir "^6.5.0"
-    picomatch "^4.0.4"
 
 tsx@^4.21.0:
   version "4.21.0"

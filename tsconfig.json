@@ -1,9 +1,9 @@
 {
-  "compilerOptions": {
-    "outDir": "build",
-    "rootDir": "src",
-    "resolveJsonModule": true,
-    "esModuleInterop": true
-  },
-  "include": ["src/**/*.ts"]
+	"compilerOptions": {
+		"outDir": "build",
+		"rootDir": "src",
+		"resolveJsonModule": true,
+		"esModuleInterop": true
+	},
+	"include": ["src/**/*.ts"]
 }
