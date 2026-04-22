@@ -1,10 +1,10 @@
 #!/usr/bin/env node
+import { execSync } from "node:child_process";
+import type { PathLike } from "node:fs";
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
 import process from "node:process";
-import { execSync } from "child_process";
 import { Blue, Green, Red } from "color-loggers";
-import type { PathLike } from "fs";
-import { existsSync } from "fs";
-import { resolve } from "path";
 
 const error = new Red("[Error]: ");
 const info = new Blue("[Start]: ");
@@ -33,7 +33,7 @@ if (!existsSync(packagePath)) {
 
 const packageJson = require(packagePath);
 let ignorePkgs = new Set();
-if (packageJson["yarn-upgrade-all"] && packageJson["yarn-upgrade-all"].ignore) {
+if (packageJson["yarn-upgrade-all"]?.ignore) {
 	ignorePkgs = new Set(packageJson["yarn-upgrade-all"].ignore);
 }
 
