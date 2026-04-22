@@ -4,7 +4,7 @@
 	"description": "This is a command line utility program to upgrade all the packages in your package.json to the latest version (potentially upgrading packages across major versions).",
 	"repository": "git@github.com:tylerlong/yarn-upgrade-all.git",
 	"license": "MIT",
-	"author": "Tyler Long <tyler4long@gmail.com>",
+	"author": "Tyler Liu <tyler4long@gmail.com>",
 	"contributors": [
 		{
 			"name": "Gorniaky",
@@ -16,9 +16,7 @@
 		"yarn-upgrade-all": "./build/index.js"
 	},
 	"scripts": {
-		"lint": "biome lint --write .",
-		"format": "biome format --write .",
-		"check": "biome check .",
+		"lint": "biome check . --write",
 		"prepublishOnly": "tsc",
 		"test": "tsx src/index.ts"
 	},

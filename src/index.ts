@@ -1,10 +1,10 @@
 #!/usr/bin/env node
+import process from "node:process";
 import { execSync } from "child_process";
+import { Blue, Green, Red } from "color-loggers";
 import type { PathLike } from "fs";
 import { existsSync } from "fs";
 import { resolve } from "path";
-import { Blue, Green, Red } from "color-loggers";
-import process from "node:process";
 
 const error = new Red("[Error]: ");
 const info = new Blue("[Start]: ");
