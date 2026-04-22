@@ -24,9 +24,9 @@
     "color-loggers": "^0.3.2"
   },
   "devDependencies": {
-    "@types/node": "^22.13.5",
-    "sort-package-json": "^2.14.0",
-    "tsx": "^4.19.3",
-    "typescript": "^5.7.3"
+    "@types/node": "^25.6.0",
+    "sort-package-json": "^3.6.1",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
   }
 }
