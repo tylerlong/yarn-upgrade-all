@@ -4,7 +4,13 @@
 		"rootDir": "src",
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
-		"types": ["node"]
+		"types": [
+			"node"
+		],
+		"module": "Node16",
+		"target": "es2020"
 	},
-	"include": ["src/**/*.ts"]
+	"include": [
+		"src/**/*.ts"
+	]
 }
