@@ -16,13 +16,13 @@ let packagePath: PathLike;
 let global = "";
 if (inputs.has("-g") || inputs.has("--global")) {
 	global = "global";
-	packagePath = resolve(
-		process.env[process.platform === "win32" ? "USERPROFILE" : "HOME"]!,
-		".config",
-		"yarn",
-		"global",
-		"package.json",
-	);
+	const homeDir =
+		process.env[process.platform === "win32" ? "USERPROFILE" : "HOME"];
+	if (!homeDir) {
+		error.log("Cannot determine home directory");
+		process.exit(1);
+	}
+	packagePath = resolve(homeDir, ".config", "yarn", "global", "package.json");
 } else {
 	packagePath = resolve(process.cwd(), "package.json");
 }
